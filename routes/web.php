@@ -37,7 +37,7 @@ Route::get('/tasks/{task}', function (Task $task) {
 })->name('tasks.show');
 
 Route::post('tasks', function (TaskRequest $request) {
-    Task::create($request->validated());
-    
-    return redirect()->route('tasks.index');
+    $task = Task::create($request->validated());
+
+    return redirect()->route('tasks.show', ['task' => $task]);
 })->name('tasks.store');
