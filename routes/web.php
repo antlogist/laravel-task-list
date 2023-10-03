@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\Route;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -35,6 +36,8 @@ Route::get('/tasks/{task}', function (Task $task) {
     ]);
 })->name('tasks.show');
 
-Route::post('tasks', function (Request $request) {
-    dd($request);
+Route::post('tasks', function (TaskRequest $request) {
+    Task::create($request->validated());
+    
+    return redirect()->route('tasks.index');
 })->name('tasks.store');
