@@ -23,3 +23,9 @@ Route::get('/tasks', function (Task $tasks) {
         'tasks' => $tasks->latest()->get()
     ]);
 })->name('tasks.index');
+
+Route::get('/tasks/{task}', function (Task $task) {
+    return view('show', [
+        'task' => $task
+    ]);
+})->name('tasks.show');

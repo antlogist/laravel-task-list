@@ -19,7 +19,6 @@ class TaskFactory extends Factory
         return [
             'title' => fake()->sentence,
             'description' => fake()->sentences(2, true),
-            'long_description' => fake()->sentences(3, true),
             'completed' => fake()->boolean
         ];
     }
