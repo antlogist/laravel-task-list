@@ -14,7 +14,7 @@
         @forelse ($tasks as $task)
 
         <div>
-            <a href="#">{{ $task->title }}</a>
+            <a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a>
         @empty
 
         <p>There are no tasks</p>
