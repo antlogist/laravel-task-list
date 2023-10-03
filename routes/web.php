@@ -24,6 +24,10 @@ Route::get('/tasks', function (Task $tasks) {
     ]);
 })->name('tasks.index');
 
+Route::get('/tasks/create', function () {
+    return view('create');
+})->name('tasks.create');
+
 Route::get('/tasks/{task}', function (Task $task) {
     return view('show', [
         'task' => $task
