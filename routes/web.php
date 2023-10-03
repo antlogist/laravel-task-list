@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Task;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,7 @@ Route::get('/tasks/{task}', function (Task $task) {
         'task' => $task
     ]);
 })->name('tasks.show');
+
+Route::post('tasks', function (Request $request) {
+    dd($request);
+})->name('tasks.store');
