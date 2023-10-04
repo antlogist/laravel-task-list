@@ -14,6 +14,11 @@
     <br>
     <div>
         <a href="{{ route('tasks.edit', $task) }}">Edit</a>
+        <form method="POST" action="{{ route('tasks.delete', $task) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
     </div>
 </body>
 
