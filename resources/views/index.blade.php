@@ -19,6 +19,11 @@
 
         <div>
             <a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a>
+            <form method="POST" action="{{ route('tasks.delete', $task) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
         @empty
 
         <p>There are no tasks</p>

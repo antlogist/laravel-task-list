@@ -53,3 +53,9 @@ Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
 
     return redirect()->route('tasks.show', $task);
 })->name('tasks.update');
+
+Route::delete('/tasks/{task}', function (Task $task) {
+    $task->delete();
+
+    return redirect()->route('tasks.index');
+})->name('tasks.delete');
