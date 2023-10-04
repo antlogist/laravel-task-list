@@ -4,24 +4,29 @@
 
 @section('content')
 
-    {{ $task->title }}
-    <br>
-    {{ $task->description }}
-    <br>
-    <div>
-        <a href="{{ route('tasks.edit', $task) }}">Edit</a>
-        <form method="POST" action="{{ route('tasks.delete', $task) }}">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Delete</button>
-        </form>
+<h1>{{ $task->title }}</h1>
 
-        <form method="POST" action="{{ route('tasks.complete', $task) }}">
-            @csrf
-            @method('PUT')
-            <button type="submit">{{ $task->completed ? 'Completed' : 'Not completed' }}</button>
-        </form>
+<div class="mt-3">
+    {{ $task->description }}
+</div>
+
+<div class="d-flex my-5">
+    <div>
+        <a class="btn btn-outline-dark" href="{{ route('tasks.edit', $task) }}">Edit</a>
     </div>
+
+    <form class="ms-2" method="POST" action="{{ route('tasks.delete', $task) }}">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-outline-dark" type="submit">Delete</button>
+    </form>
+
+    <form class="ms-2" method="POST" action="{{ route('tasks.complete', $task) }}">
+        @csrf
+        @method('PUT')
+        <button class="btn btn-outline-dark" type="submit">{{ $task->completed ? 'Completed' : 'Not completed' }}</button>
+    </form>
+</div>
 
 @endsection
 </body>

@@ -6,24 +6,24 @@
     @endisset
 
     <div>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" value="{{ isset($task) ? $task->title : old('title') }}">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" type="text" name="title" id="title" value="{{ isset($task) ? $task->title : old('title') }}">
         
         @error('title')
-            <p>{{ $message }}</p>
+            <div class="text-danger small mt-1">{{ $message }}</div>
         @enderror
     </div>
 
     <div>
-        <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10">{{ isset($task) ? $task->description : old('description') }}</textarea>
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ isset($task) ? $task->description : old('description') }}</textarea>
 
         @error('description')
-            <p>{{ $message }}</p>
+            <div class="text-danger small mt-1">{{ $message }}</div>
         @enderror
     </div>
 
-    <div>
-        <button type="submit">{{ isset($task) ? 'Update' : 'Add' }}</button>
+    <div class="my-3">
+        <button class="btn btn-outline-dark" type="submit">{{ isset($task) ? 'Update' : 'Add' }}</button>
     </div>
 </form>
