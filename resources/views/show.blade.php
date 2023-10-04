@@ -11,6 +11,10 @@
     {{ $task->title }}
     <br>
     {{ $task->description }}
+    <br>
+    <div>
+        <a href="{{ route('tasks.edit', $task) }}">Edit</a>
+    </div>
 </body>
 
 </html>

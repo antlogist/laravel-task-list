@@ -9,6 +9,10 @@
 
 <body>
 
+    <div>
+        <a href="{{ route('tasks.create') }}">Create</a>
+    </div>
+
     @isset ($tasks)
 
         @forelse ($tasks as $task)
