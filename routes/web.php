@@ -59,3 +59,10 @@ Route::delete('/tasks/{task}', function (Task $task) {
 
     return redirect()->route('tasks.index');
 })->name('tasks.delete');
+
+Route::put('/tasks/{task}/complete', function (Task $task) {
+    $task->completed = !$task->completed;
+    $task->save();
+
+    return redirect()->route('tasks.index');
+})->name('tasks.complete');
