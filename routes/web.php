@@ -30,6 +30,12 @@ Route::get('/tasks/create', function () {
     return view('create');
 })->name('tasks.create');
 
+Route::get('/tasks/{task}/edit', function (Task $task) {
+    return view('edit', [
+        'task' => $task
+    ]);
+})->name('tasks.edit');
+
 Route::get('/tasks/{task}', function (Task $task) {
     return view('show', [
         'task' => $task
@@ -39,5 +45,11 @@ Route::get('/tasks/{task}', function (Task $task) {
 Route::post('tasks', function (TaskRequest $request) {
     $task = Task::create($request->validated());
 
-    return redirect()->route('tasks.show', ['task' => $task]);
+    return redirect()->route('tasks.show', $task);
 })->name('tasks.store');
+
+Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
+    $task->update($request->validated());
+
+    return redirect()->route('tasks.show', $task);
+})->name('tasks.update');
