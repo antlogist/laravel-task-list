@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
-</head>
+@section('title', 'Tasks')
 
-<body>
+@section('content')
 
-    <div>
-        <a href="{{ route('tasks.create') }}">Create</a>
-    </div>
+<div>
+    <a href="{{ route('tasks.create') }}">Create</a>
+</div>
 
     @isset ($tasks)
 
         @forelse ($tasks as $task)
-
-        <div>
-            <a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a> <span>{{ $task->completed ? 'completed' : 'not completed' }}</span>
+        
+            <a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a>
+            <div>{{ $task->completed ? 'completed' : 'not completed' }}</div>
+            
             <form method="POST" action="{{ route('tasks.delete', $task) }}">
                 @csrf
                 @method('DELETE')
@@ -30,14 +26,13 @@
                 @method('PUT')
                 <button type="submit">{{ $task->completed ? 'Completed' : 'Not completed' }}</button>
             </form>
+
         @empty
 
-        <p>There are no tasks</p>
+            <p>There are no tasks</p>
 
         @endforelse
 
     @endisset
 
-</body>
-
-</html>
+@endsection

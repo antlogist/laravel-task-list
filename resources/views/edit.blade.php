@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@section('title', $task->title)
 
-<body>
+@section('content')
+
     <form method="POST" action="{{ route('tasks.update', $task) }}">
         @csrf
         @method('PUT')
@@ -25,6 +21,5 @@
         <button type="submit">Update</button>
 
     </form>
-</body>
 
-</html>
+@endsection

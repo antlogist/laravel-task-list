@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@section('title', $task->title)
 
-<body>
+@section('content')
+
     {{ $task->title }}
     <br>
     {{ $task->description }}
@@ -19,7 +15,15 @@
             @method('DELETE')
             <button type="submit">Delete</button>
         </form>
+
+        <form method="POST" action="{{ route('tasks.complete', $task) }}">
+            @csrf
+            @method('PUT')
+            <button type="submit">{{ $task->completed ? 'Completed' : 'Not completed' }}</button>
+        </form>
     </div>
+
+@endsection
 </body>
 
 </html>
