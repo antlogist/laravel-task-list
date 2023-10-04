@@ -1,32 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
-</head>
+@section('title', 'Tasks')
 
-<body>
+@section('content')
 
-    <div>
-        <a href="{{ route('tasks.create') }}">Create</a>
+@isset ($tasks)
+
+<div class="list-group">
+    @forelse ($tasks as $task)
+
+    <div class="list-group-item list-group-item-action">
+        <div class="d-flex justify-content-between">
+            <div>
+                <a class="text-decoration-none text-primary" href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a>
+                <div>{{ $task->completed ? 'completed' : 'not completed' }}</div>
+            </div>
+
+            <div class="d-flex">
+                <form class="me-2" method="POST" action="{{ route('tasks.delete', $task) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-dark" type="submit">Delete</button>
+                </form>
+
+                <form method="POST" action="{{ route('tasks.complete', $task) }}">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-outline-dark" type="submit">{{ $task->completed ? 'Completed' : 'Not completed' }}</button>
+                </form>
+            </div>
+
+        </div>
     </div>
 
-    @isset ($tasks)
+    @empty
 
-        @forelse ($tasks as $task)
+    <p>There are no tasks</p>
 
-        <div>
-            <a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a>
-        @empty
+    @endforelse
+</div>
 
-        <p>There are no tasks</p>
+@endisset
 
-        @endforelse
-
-    @endisset
-
-</body>
-
-</html>
+@endsection
