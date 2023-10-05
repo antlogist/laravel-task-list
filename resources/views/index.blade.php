@@ -38,6 +38,10 @@
     <p>There are no tasks</p>
 
     @endforelse
+
+    <div class="my-5">
+        {{ $tasks->links() }}
+    </div>
 </div>
 
 @endisset

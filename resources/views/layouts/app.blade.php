@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container position-relative">
+    <div class="container position-relative mb-5">
         @if(session()->has('success'))
         <div class="alert alert-success mt-5" id="successAlert">
             {{ session('success') }}
