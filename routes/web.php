@@ -3,6 +3,7 @@
 use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\Route;
 use App\Models\Task;
+use App\Models\TaskStatus;
 use Illuminate\Http\Request;
 
 /*
@@ -44,6 +45,7 @@ Route::get('/tasks/{task}', function (Task $task) {
 
 Route::post('tasks', function (TaskRequest $request) {
     $task = Task::create($request->validated());
+    $task->status()->create();
 
     return redirect()->route('tasks.show', $task)->with('success', 'Task created');
 })->name('tasks.store');
@@ -61,8 +63,10 @@ Route::delete('/tasks/{task}', function (Task $task) {
 })->name('tasks.delete');
 
 Route::put('/tasks/{task}/complete', function (Task $task) {
-    $task->completed = !$task->completed;
     $task->save();
+
+    $task->status->status = !$task->status->status;
+    $task->status()->update(['status' => $task->status->status]);
 
     return redirect()->back()->with('success', $task->completed ? 'Task completed' : 'Task not completed');
 })->name('tasks.complete');

@@ -26,7 +26,7 @@
                 <form method="POST" action="{{ route('tasks.complete', $task) }}">
                     @csrf
                     @method('PUT')
-                    <button class="btn btn-outline-dark" type="submit">{{ $task->completed ? 'Completed' : 'Not completed' }}</button>
+                    <button class="btn btn-outline-dark" type="submit">{{ $task->status->status ? 'Completed' : 'Not completed' }}</button>
                 </form>
             </div>
 

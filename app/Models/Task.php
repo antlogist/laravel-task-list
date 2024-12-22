@@ -12,4 +12,9 @@ class Task extends Model
     // public $timestamps = false;
 
     protected $fillable = ['title', 'description'];
+
+    public function status()
+    {
+        return $this->hasOne(TaskStatus::class);
+    }
 }
