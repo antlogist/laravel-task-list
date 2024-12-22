@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,6 @@ class TaskFactory extends Factory
         return [
             'title' => fake()->sentence,
             'description' => fake()->sentences(2, true),
-            'completed' => fake()->boolean
         ];
     }
 }
