@@ -69,4 +69,4 @@ Route::put('/tasks/{task}/complete', function (Task $task) {
 
 Route::fallback(function () {
     return redirect()->route('tasks.index');
-});
+})->name('fallback');
