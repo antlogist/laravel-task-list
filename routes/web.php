@@ -3,8 +3,6 @@
 use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\Route;
 use App\Models\Task;
-use App\Models\TaskStatus;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
