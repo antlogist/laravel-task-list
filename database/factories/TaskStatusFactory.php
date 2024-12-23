@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class TaskStatusFactory extends Factory
 {
 
-    public $sequenceNumber = 0;
-
     /**
      * Define the model's default state.
      *
@@ -21,13 +19,6 @@ class TaskStatusFactory extends Factory
     {
         return [
             'status' => fake()->boolean,
-            'task_id' => $this->generateSequenceNumber()
         ];
-    }
-
-    function generateSequenceNumber()
-    {
-        ++$this->sequenceNumber;
-        return $this->sequenceNumber;
     }
 }
